@@ -4,7 +4,7 @@ module.exports = (ctx)=>{
     let {url,method} = ctx.req
     let {resCtx,reqCtx} = ctx
     //返回数组 或 undefined
-
+    let {res} = ctx
     method = method.toLowerCase()
     let test = {
         '/user.action':['hello','world','aa'],
@@ -19,7 +19,9 @@ module.exports = (ctx)=>{
                     let body = reqCtx.body
                     resCtx.body =  JSON.stringify(body)
                 }
+                resCtx.headers = Object.assign(resCtx.headers,{'Content-type':'application/json'})
             }
+
             resolve()
         }
     })

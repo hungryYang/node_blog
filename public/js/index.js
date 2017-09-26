@@ -4,7 +4,7 @@ setTimeout(()=>{
         url:'/user.action',
         method:'get',
         success:function (data) {
-            $('#root').html(JSON.parse(data))
+            $('#root').html(data)
         },
         error:function (error) {
             console.log(error)

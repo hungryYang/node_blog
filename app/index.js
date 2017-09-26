@@ -5,7 +5,22 @@ const urlParser = require('./url-parser')
 const staticServer = require('./static-server')
 class App{
     constructor(){
+        this.middlewareArr = []
+        this.middlewareChain = Promise.resolve()
+    }
+    use(middleware){
+        this.middlewareArr.push(middleware)
+    }
+    //创建Promise链条
+    composeMiddleware(context){
+        let {middlewareArr} = this
 
+        for(let middleware of middlewareArr){
+            this.middlewareChain = this.middlewareChain.then(()=>{
+                return middleware(context)
+            })
+        }
+        return this.middlewareChain
     }
     initServer(){
         return (req,res)=>{
@@ -21,23 +36,13 @@ class App{
                     headers:{},//请求头
                 }
             }
-            urlParser(context).then(()=>{
-                return apiServer(context)
-            }).then(()=>{
-                console.log(context.resCtx)
-                return staticServer(context)
-            }).then(()=>{
+            let {headers} = context.resCtx
+            this.composeMiddleware(context).then(()=>{
                 let base = {'X-powered-by':'Node.js'}
                 let {body} = context.resCtx
-                console.log(context.resCtx)
-                // if ( val instanceof Buffer){
-                //     body = val
-                // }else{
-                //     body = JSON.stringify(val)
-                //     let headers = {'Content-Type':'application/json'}
-                //     let finalHeader = Object.assign(headers,base)
-                //     res.writeHead(200,'ok',finalHeader)
-                // }
+                //writeHead 会覆盖 setHeader
+                headers = Object.assign(headers,base)
+                res.writeHead(200,'ok',headers)
                 res.end(body)
             })
             // urlParser(context).then(()=>{
