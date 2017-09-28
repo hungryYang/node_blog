@@ -4,7 +4,8 @@
   "description": "node",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --inspect index.js"
+    "start": "nodemon --inspect index.js",
+    "test": "nodemon --inspect test/index.js"
   },
   "keywords": [
     "node",
@@ -14,5 +15,9 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "mime": "^2.0.3"
   }
 }

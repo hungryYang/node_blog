@@ -8,14 +8,15 @@ module.exports = (ctx)=>{
     return Promise.resolve({
         then:(resolve,reject)=>{
             if(method === 'post'){
-                let data = ''
+                let data = []
                 //request 原型链  readable stream eventemitter
                 //paused stream ===> flow stream
                 //仓库 ==> 拿出来 ==>end  仓库清空内存释放
                 ctx.req.on('data',(chunk)=>{
-                    data += chunk
+                    data.push(chunk)
                 }).on('end',()=>{
-                    reqCtx.body = JSON.parse(data)
+                    let endData = Buffer.concat(data).toString()
+                    reqCtx.body = JSON.parse(endData)
                     resolve()
                 })
             }else{
