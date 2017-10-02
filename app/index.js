@@ -1,8 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const apiServer = require('./api-server')
-const urlParser = require('./url-parser')
-const staticServer = require('./static-server')
+
 class App{
     constructor(){
         this.middlewareArr = []
@@ -29,20 +27,24 @@ class App{
                 res,
                 reqCtx:{
                     body:'', // post 数据
-                    query:{} //客户端get请求
+                    query:{}, //客户端get请求
+
                 },
                 resCtx:{
                     body:'',//返回给前端的内容区
                     headers:{},//请求头
+                    statusCode:200, // 状态吗
+                    statusMessage:'ok',
+                    hasUser:false //权限
                 }
             }
-            let {headers} = context.resCtx
+
             this.composeMiddleware(context).then(()=>{
                 let base = {'X-powered-by':'Node.js'}
-                let {body} = context.resCtx
+                let {body,statusCode,headers,statusMessage} = context.resCtx
                 //writeHead 会覆盖 setHeader
                 headers = Object.assign(headers,base)
-                res.writeHead(200,'ok',headers)
+                res.writeHead(statusCode,statusMessage,headers)
                 res.end(body)
             })
             // urlParser(context).then(()=>{
