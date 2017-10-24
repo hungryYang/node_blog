@@ -6,14 +6,38 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/dist/common.css">
 </head>
 <body>
-<nav>
-    <a href="/index">主页</a>
-    <a href="/about">关于</a>
-    <a href="/list">列表</a>
+<header class="header" >
+    <div class="logo">
+        Blog
+    </div>
+    <nav class="nav">
+        <% if(active==='/'){%>
+            <a class="active" href="/index">主页</a>
+        <%}else{%>
+            <a href="/index">主页</a>
+        <%}%>
+
+        <% if(active==='/about'){%>
+            <a class="active" href="/about">关于</a>
+        <%}else{%>
+            <a href="/about">关于</a>
+        <%}%>
+
+        <% if(active==='/list'){%>
+            <a class="active" href="/list">列表</a>
+        <%}else{%>
+            <a href="/list">列表</a>
+        <%}%>
+
+    </nav>
+    <img class="avatar" src="./img/th.jpg" alt="头像">
     <% if(hasUser){%>
-    <a href="/write">写博客</a>
+    <a class="active" href="/write">写博客</a>
     <%}%>
-</nav>
+</header>
+<script>
+
+</script>

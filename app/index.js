@@ -35,7 +35,8 @@ class App{
                     headers:{},//请求头
                     statusCode:200, // 状态吗
                     statusMessage:'ok',
-                    hasUser:false //权限
+                    hasUser:false, //权限
+                    active:''//颜色
                 }
             }
 
@@ -47,27 +48,7 @@ class App{
                 res.writeHead(statusCode,statusMessage,headers)
                 res.end(body)
             })
-            // urlParser(context).then(()=>{
-            //     return apiServer(req)
-            // }).then(val=>{
-            //     if(!val){
-            //         return staticServer(context)
-            //     }else{
-            //         return val
-            //     }
-            // }).then(val=>{
-            //     let base = {'X-powered-by':'Node.js'}
-            //     let body = ''
-            //     if ( val instanceof Buffer){
-            //         body = val
-            //     }else{
-            //         body = JSON.stringify(val)
-            //         let headers = {'Content-Type':'application/json'}
-            //         let finalHeader = Object.assign(headers,base)
-            //         res.writeHead(200,'ok',finalHeader)
-            //     }
-            //     res.end(body)
-            // })
+
         }
     }
 }

@@ -17,6 +17,7 @@ module.exports = (ctx)=>{
             }else{
                 let viewPath = path.resolve(__dirname,'ejs')
                 let ejsName = urlrewriteMap[url]
+                resCtx.active = url
                 if(ejsName){
                     let layoutPath = path.resolve(viewPath,'layout.ejs')
                     let layoutHtml = fs.readFileSync(layoutPath,'utf8')
@@ -27,7 +28,8 @@ module.exports = (ctx)=>{
                     })
                     let html = render({
                         templateName:ejsName,
-                        hasUser:resCtx.hasUser
+                        hasUser:resCtx.hasUser,
+                        active:resCtx.active
                     })
                     resCtx.headers = Object.assign(resCtx.headers,{
                         'Content-type':'text/html'
