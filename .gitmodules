@@ -1,0 +1,3 @@
+[submodule "node_blog_fe"]
+	path = node_blog_fe
+	url = git@github.com:hungryYang/node_blog_fe.git
