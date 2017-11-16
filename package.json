@@ -19,6 +19,7 @@
   "dependencies": {
     "cookie": "^0.3.1",
     "ejs": "^2.5.7",
-    "mime": "^2.0.3"
+    "mime": "^2.0.3",
+    "mongoose": "^4.13.0"
   }
 }

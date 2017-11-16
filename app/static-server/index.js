@@ -1,13 +1,14 @@
 const path = require('path')
 const fs = require('fs')
 const mime =require('mime')
-let getPath = url=> path.resolve(process.cwd(),`public`,`.${url}`)
+const public = `pure-node-notebook-fe`
+let getPath = pathname=> path.resolve(process.cwd(),public,`.${pathname}`)
 let staticServer = (ctx)=>{
-    let {url} = ctx.req
+    let {pathname} = ctx.reqCtx
     let {resCtx} = ctx
     return new Promise((resolve,reject)=>{
-        if(url.match(/\./)&&!url.match('action')){
-            let _path = getPath(url)
+        if(pathname.match(/\./)&&!pathname.match('action')){
+            let _path = getPath(pathname)
             //readFile 和 end encoding保持一致
             resCtx.headers = Object.assign(resCtx.headers,{
                 'Content-type':mime.getType(_path)

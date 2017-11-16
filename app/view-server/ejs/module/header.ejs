@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/dist/common.css">
+    <link rel="stylesheet" href="/dist/<%-viewName%>.css">
 </head>
 <body>
 <header class="header" >
@@ -35,7 +36,7 @@
     </nav>
     <img class="avatar" src="./img/th.jpg" alt="头像">
     <% if(hasUser){%>
-    <a class="active" href="/write">写博客</a>
+    <a class="active" href="/manage">管理博客</a>
     <%}%>
 </header>
 <script>

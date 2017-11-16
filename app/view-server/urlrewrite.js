@@ -3,8 +3,9 @@
 const urlrewriteMap = {
     '/':'index',
     '/list':'list',
-    '/write':'write',
-    '/about':'about'
+    '/manage':'manage',
+    '/about':'about',
+    '/blog':'detail'
 }
 
 module.exports = urlrewriteMap
