@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const mime =require('mime')
-const public = `pure-node-notebook-fe`
+const public = `node_blog_fe`
 let getPath = pathname=> path.resolve(process.cwd(),public,`.${pathname}`)
 let staticServer = (ctx)=>{
     let {pathname} = ctx.reqCtx

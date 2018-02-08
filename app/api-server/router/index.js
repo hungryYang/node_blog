@@ -1,4 +1,4 @@
-1//创建路由模块
+//创建路由模块
 
 class Router{
   constructor(){

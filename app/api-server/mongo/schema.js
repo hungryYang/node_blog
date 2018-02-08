@@ -1,4 +1,4 @@
-//创建schema
+ //创建schema
 
 const {Schema} = require('mongoose');
 
